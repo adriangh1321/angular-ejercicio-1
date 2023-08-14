@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="card mt-4 p-4 bg-secondary-subtle">
+        <div class="row">
+            <div class="col">
+                <h2 class="text-center">Crear nueva tarea</h2>
+            </div>
+        </div>
+
+        <div class="row mt-3 mb-3">
+            <div class="col-md-6">
+                <input class="form-control" type="text" placeholder="ingresar descripcion" [(ngModel)]="description">
+            </div>
+            <div class="col-md-4">
+                <input class="form-control" type="date" [(ngModel)]="date">
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-primary w-100" (click)="agregar()">Agregar</button>
+            </div>
+
+        </div>
+    </div>
+
+   
+    <h2 class="text-center mt-5">Lista de tareas</h2>
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Realizada</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tarea of listTareas;index as i" [ngClass]="{'table-success':tarea.isCompleted}">
+            <th scope="row">{{tarea.id}}</th>
+            <td>{{tarea.description}}</td>
+            <td>{{tarea.date | date: 'dd/MM/yyyy'}}</td>
+            <td >
+                <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" [ngModel]="tarea.isCompleted" id="flexCheckDefault" (change)="cambiarCompletado(i)">
+              </div>
+            </td>
+            <td> <button class="btn btn-danger" (click)="eliminarTarea(i)">Eliminar</button></td>
+          </tr>
+
+        </tbody>
+      </table>
+ 
+</div>
+
